@@ -1,13 +1,14 @@
-name: "Greet User Action"
-description: "Une action qui salue un utilisateur avec un message personnalisé"
+name: "Docker Message Action"
+description: "Une action Docker qui génère et affiche un message personnalisé"
 inputs:
-  username:
-    description: "Nom de l'utilisateur à saluer"
+  message:
+    description: "Le message à afficher"
     required: true
-  greeting:
-    description: "Message de salutation"
-    required: false
-    default: "Bonjour"
+outputs:
+  output-message:
+    description: "Le message généré par l'action"
 runs:
-  using: "node20"
-  main: "index.js"
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.message }}
